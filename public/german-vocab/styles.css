@@ -684,30 +684,37 @@ select,
 
 .floating-bar {
   position: sticky;
-  bottom: 12px;
-  margin-top: 20px;
+  bottom: 10px;
+  margin-top: 16px;
   background: rgba(16, 18, 24, 0.92);
   border: 1px solid rgba(200, 209, 219, 0.18);
-  border-radius: 16px;
-  padding: 10px 12px;
+  border-radius: 12px;
+  padding: 6px 10px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 6px;
   z-index: 4;
   backdrop-filter: blur(10px);
+  transition: transform 0.25s ease, opacity 0.25s ease;
 }
 
 .floating-tools,
 .floating-actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 6px;
+}
+
+.floating-bar.hidden {
+  transform: translateY(24px);
+  opacity: 0;
+  pointer-events: none;
 }
 
 .floating-panel {
   margin-top: 12px;
-  padding: 12px;
-  border-radius: 16px;
+  padding: 10px;
+  border-radius: 12px;
   background: rgba(16, 18, 24, 0.92);
   border: 1px solid rgba(200, 209, 219, 0.12);
   display: grid;
@@ -719,6 +726,25 @@ select,
   flex-wrap: wrap;
   gap: 10px;
   align-items: center;
+}
+
+.pagination {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.pagination .pill {
+  padding: 6px 12px;
+}
+
+.page-info {
+  min-width: 64px;
+  text-align: center;
+  color: var(--text);
 }
 
 .practice-tools {

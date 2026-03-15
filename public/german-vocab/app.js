@@ -8,6 +8,8 @@ const state = {
   progress: {},
   custom: [],
   queue: [],
+  page: 1,
+  pageSize: 40,
   plan: {
     dailyTarget: 30,
     date: null,
@@ -87,6 +89,9 @@ const elements = {
   panelDue: document.getElementById('panelDue'),
   floatingBar: document.getElementById('floatingBar'),
   floatingPanel: document.getElementById('floatingPanel'),
+  prevPage: document.getElementById('prevPage'),
+  nextPage: document.getElementById('nextPage'),
+  pageInfo: document.getElementById('pageInfo'),
 };
 
 const PROGRESS_KEY = 'wortsprint-progress-v2';
@@ -600,17 +605,39 @@ const applyFilters = () => {
   return filtered;
 };
 
+const getPageCount = (total) => Math.max(1, Math.ceil(total / state.pageSize));
+
+const getPagedEntries = (entries) => {
+  const totalPages = getPageCount(entries.length);
+  state.page = Math.min(Math.max(state.page, 1), totalPages);
+  const start = (state.page - 1) * state.pageSize;
+  return entries.slice(start, start + state.pageSize);
+};
+
+const renderPagination = (total) => {
+  if (!elements.pageInfo) return;
+  const totalPages = getPageCount(total);
+  elements.pageInfo.textContent = `${state.page} / ${totalPages}`;
+  if (elements.prevPage) {
+    elements.prevPage.disabled = state.page <= 1;
+  }
+  if (elements.nextPage) {
+    elements.nextPage.disabled = state.page >= totalPages;
+  }
+};
+
 const renderWordList = () => {
   const filtered = applyFilters();
-  const maxItems = 120;
   elements.wordList.innerHTML = '';
 
   if (filtered.length === 0) {
     elements.wordList.innerHTML = '<div class="word-row">暂无词条，请导入词表。</div>';
+    renderPagination(0);
     return;
   }
 
-  filtered.slice(0, maxItems).forEach((entry) => {
+  const paged = getPagedEntries(filtered);
+  paged.forEach((entry) => {
     const row = document.createElement('div');
     row.className = 'word-row';
     const example = state.practice.maskExamples ? maskExample(entry.example || entry.raw || '', entry.word) : entry.example || entry.raw || '—';
@@ -624,13 +651,7 @@ const renderWordList = () => {
     `;
     elements.wordList.appendChild(row);
   });
-
-  if (filtered.length > maxItems) {
-    const more = document.createElement('div');
-    more.className = 'word-row';
-    more.innerHTML = `<strong>已显示前 ${maxItems} 条</strong><span>使用搜索进一步筛选</span>`;
-    elements.wordList.appendChild(more);
-  }
+  renderPagination(filtered.length);
 };
 
 const renderWrongList = () => {
@@ -986,6 +1007,7 @@ const checkDictation = () => {
 if (elements.courseSelect) {
   elements.courseSelect.addEventListener('change', (event) => {
     state.currentListId = event.target.value;
+    state.page = 1;
     updateEntries();
     updateStats();
     renderWordList();
@@ -999,6 +1021,7 @@ if (elements.courseSelect) {
 if (elements.filterSelect) {
   elements.filterSelect.addEventListener('change', (event) => {
     state.filter = event.target.value;
+    state.page = 1;
     updateStats();
     renderWordList();
     prepareQueue();
@@ -1009,6 +1032,7 @@ if (elements.filterSelect) {
 if (elements.searchInput) {
   elements.searchInput.addEventListener('input', (event) => {
     state.search = event.target.value.trim();
+    state.page = 1;
     renderWordList();
     prepareQueue();
     renderFlashcard();
@@ -1076,6 +1100,60 @@ if (elements.startDaily) {
 if (elements.viewWrongList) {
   elements.viewWrongList.addEventListener('click', () => {
     elements.wrongList?.scrollIntoView({ behavior: 'smooth' });
+  });
+}
+
+if (elements.prevPage) {
+  elements.prevPage.addEventListener('click', () => {
+    state.page = Math.max(1, state.page - 1);
+    renderWordList();
+  });
+}
+
+if (elements.nextPage) {
+  elements.nextPage.addEventListener('click', () => {
+    state.page += 1;
+    renderWordList();
+  });
+}
+
+if (elements.wordList) {
+  let startX = 0;
+  let startY = 0;
+  elements.wordList.addEventListener('touchstart', (event) => {
+    const touch = event.touches[0];
+    startX = touch.clientX;
+    startY = touch.clientY;
+  });
+  elements.wordList.addEventListener('touchend', (event) => {
+    const touch = event.changedTouches[0];
+    const dx = touch.clientX - startX;
+    const dy = touch.clientY - startY;
+    if (Math.abs(dx) > 40 && Math.abs(dy) < 30) {
+      if (dx < 0) {
+        state.page += 1;
+      } else {
+        state.page = Math.max(1, state.page - 1);
+      }
+      renderWordList();
+    }
+  });
+}
+
+if (elements.floatingBar) {
+  let lastScrollY = window.scrollY;
+  window.addEventListener('scroll', () => {
+    const currentY = window.scrollY;
+    const delta = currentY - lastScrollY;
+    if (delta > 10) {
+      elements.floatingBar.classList.add('hidden');
+    } else if (delta < -10) {
+      elements.floatingBar.classList.remove('hidden');
+    }
+    lastScrollY = currentY;
+  });
+  elements.floatingBar.addEventListener('click', () => {
+    elements.floatingBar.classList.remove('hidden');
   });
 }
 
