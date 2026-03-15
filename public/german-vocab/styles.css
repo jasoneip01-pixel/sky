@@ -41,8 +41,8 @@ body {
 .app {
   position: relative;
   z-index: 1;
-  padding: calc(env(safe-area-inset-top, 0px) + 32px) 7vw 96px;
-  max-width: 1240px;
+  padding: calc(env(safe-area-inset-top, 0px) + 28px) 6vw 88px;
+  max-width: 1180px;
   margin: 0 auto;
 }
 
@@ -50,7 +50,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 24px;
+  gap: 18px;
   flex-wrap: wrap;
 }
 
@@ -122,22 +122,22 @@ body {
 }
 
 .brand .logo {
-  font-size: clamp(26px, 4vw, 36px);
-  letter-spacing: 1.5px;
+  font-size: clamp(24px, 3.6vw, 32px);
+  letter-spacing: 1.2px;
   font-weight: 700;
   font-family: 'Cormorant Garamond', 'Noto Serif SC', serif;
 }
 
 .brand .tagline {
   color: var(--muted);
-  font-size: 13px;
+  font-size: 12px;
   letter-spacing: 0.6px;
   margin-top: 4px;
 }
 
 .cta {
   display: flex;
-  gap: 12px;
+  gap: 10px;
   flex-wrap: wrap;
 }
 
@@ -155,7 +155,7 @@ button:active {
 .primary {
   background: linear-gradient(135deg, var(--accent), var(--accent-strong));
   color: #0f141b;
-  padding: 11px 20px;
+  padding: 10px 18px;
   border-radius: 999px;
   font-weight: 600;
   box-shadow: 0 18px 45px rgba(120, 140, 160, 0.28);
@@ -165,19 +165,19 @@ button:active {
   background: transparent;
   border: 1px solid var(--stroke);
   color: var(--text);
-  padding: 10px 18px;
+  padding: 9px 16px;
   border-radius: 999px;
 }
 
 .hero {
-  margin-top: 46px;
+  margin-top: 34px;
   display: grid;
   grid-template-columns: minmax(260px, 1.1fr) minmax(260px, 0.9fr);
-  gap: 36px;
+  gap: 28px;
 }
 
 .hero-copy h1 {
-  font-size: clamp(30px, 4.2vw, 44px);
+  font-size: clamp(28px, 4vw, 40px);
   margin: 0 0 12px;
   font-family: 'Cormorant Garamond', 'Noto Serif SC', serif;
   letter-spacing: 0.8px;
@@ -206,8 +206,8 @@ button:active {
 
 .hero-card {
   background: linear-gradient(160deg, rgba(28, 32, 40, 0.98), rgba(18, 21, 28, 0.9));
-  border-radius: 26px;
-  padding: 26px;
+  border-radius: 22px;
+  padding: 22px;
   border: 1px solid rgba(200, 209, 219, 0.18);
   box-shadow: var(--shadow);
 }
@@ -256,7 +256,7 @@ button:active {
 }
 
 .section {
-  margin-top: 54px;
+  margin-top: 42px;
 }
 
 .section-header {
@@ -269,7 +269,7 @@ button:active {
 
 .section-header h2 {
   margin: 0;
-  font-size: 24px;
+  font-size: 22px;
   font-family: 'Cormorant Garamond', 'Noto Serif SC', serif;
 }
 
@@ -279,16 +279,16 @@ button:active {
 }
 
 .course-grid {
-  margin-top: 20px;
+  margin-top: 14px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 18px;
+  gap: 14px;
 }
 
 .course-card {
   background: var(--panel);
-  border-radius: 22px;
-  padding: 20px;
+  border-radius: 18px;
+  padding: 16px;
   border: 1px solid rgba(200, 209, 219, 0.12);
 }
 
@@ -495,10 +495,10 @@ select,
 }
 
 .card-shell {
-  margin-top: 20px;
+  margin-top: 14px;
   background: var(--panel);
-  border-radius: 26px;
-  padding: 24px;
+  border-radius: 22px;
+  padding: 20px;
   border: 1px solid rgba(200, 209, 219, 0.1);
 }
 
@@ -598,9 +598,9 @@ select,
 
 .flashcard {
   background: rgba(255, 255, 255, 0.03);
-  border-radius: 20px;
-  padding: 30px;
-  min-height: 180px;
+  border-radius: 18px;
+  padding: 22px;
+  min-height: 150px;
   display: grid;
   place-items: center;
   text-align: center;
@@ -610,7 +610,7 @@ select,
 }
 
 .flashcard-face {
-  font-size: clamp(22px, 4vw, 32px);
+  font-size: clamp(20px, 3.6vw, 28px);
   font-weight: 600;
   font-family: 'Cormorant Garamond', 'Noto Serif SC', serif;
 }
@@ -652,8 +652,8 @@ select,
 
 .word-row {
   background: var(--panel);
-  border-radius: 14px;
-  padding: 12px 16px;
+  border-radius: 12px;
+  padding: 10px 14px;
   border: 1px solid var(--stroke);
   display: grid;
   gap: 6px;
@@ -691,9 +691,9 @@ select,
   gap: 14px;
   flex-wrap: wrap;
   background: var(--panel);
-  border-radius: 20px;
-  padding: 18px;
-  border: 1px solid rgba(215, 181, 109, 0.12);
+  border-radius: 16px;
+  padding: 14px;
+  border: 1px solid rgba(200, 209, 219, 0.12);
 }
 
 .import-status {
