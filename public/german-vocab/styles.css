@@ -2,16 +2,16 @@
 
 :root {
   color-scheme: dark;
-  --bg: #0a0b0c;
-  --bg-2: #101216;
-  --panel: rgba(16, 18, 22, 0.88);
-  --panel-strong: rgba(20, 22, 27, 0.95);
-  --accent: #d7b56d;
-  --accent-strong: #f1e0b3;
-  --text: #f4f0e6;
-  --muted: #a49b8c;
+  --bg: #0b0c10;
+  --bg-2: #12141a;
+  --panel: rgba(16, 18, 24, 0.9);
+  --panel-strong: rgba(20, 23, 30, 0.96);
+  --accent: #c8d1db;
+  --accent-strong: #e6edf5;
+  --text: #eef2f6;
+  --muted: #9aa3ad;
   --stroke: rgba(255, 255, 255, 0.08);
-  --shadow: 0 22px 70px rgba(0, 0, 0, 0.55);
+  --shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
 }
 
 * {
@@ -21,7 +21,7 @@
 body {
   margin: 0;
   font-family: 'Manrope', 'Noto Serif SC', sans-serif;
-  background: radial-gradient(circle at top, rgba(215, 181, 109, 0.1), transparent 45%),
+  background: radial-gradient(circle at top, rgba(200, 209, 219, 0.08), transparent 45%),
     linear-gradient(180deg, var(--bg), var(--bg-2));
   color: var(--text);
   min-height: 100vh;
@@ -30,9 +30,9 @@ body {
 .aurora {
   position: fixed;
   inset: 0;
-  background: radial-gradient(circle at 20% 10%, rgba(215, 181, 109, 0.18), transparent 40%),
-    radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.05), transparent 45%),
-    radial-gradient(circle at 10% 80%, rgba(120, 124, 132, 0.12), transparent 35%),
+  background: radial-gradient(circle at 20% 10%, rgba(200, 209, 219, 0.12), transparent 40%),
+    radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.04), transparent 45%),
+    radial-gradient(circle at 10% 80%, rgba(140, 150, 165, 0.12), transparent 35%),
     linear-gradient(120deg, rgba(255, 255, 255, 0.02), transparent 50%);
   pointer-events: none;
   z-index: 0;
@@ -77,7 +77,7 @@ body {
   position: absolute;
   inset: 0;
   border-radius: 50%;
-  border: 1px solid rgba(215, 181, 109, 0.35);
+  border: 1px solid rgba(200, 209, 219, 0.35);
   pointer-events: none;
 }
 
@@ -154,11 +154,11 @@ button:active {
 
 .primary {
   background: linear-gradient(135deg, var(--accent), var(--accent-strong));
-  color: #1b160b;
+  color: #0f141b;
   padding: 11px 20px;
   border-radius: 999px;
   font-weight: 600;
-  box-shadow: 0 18px 45px rgba(215, 181, 109, 0.25);
+  box-shadow: 0 18px 45px rgba(120, 140, 160, 0.28);
 }
 
 .ghost {
@@ -205,10 +205,10 @@ button:active {
 }
 
 .hero-card {
-  background: linear-gradient(160deg, rgba(25, 27, 32, 0.98), rgba(16, 18, 22, 0.9));
+  background: linear-gradient(160deg, rgba(28, 32, 40, 0.98), rgba(18, 21, 28, 0.9));
   border-radius: 26px;
   padding: 26px;
-  border: 1px solid rgba(215, 181, 109, 0.18);
+  border: 1px solid rgba(200, 209, 219, 0.18);
   box-shadow: var(--shadow);
 }
 
@@ -247,12 +247,12 @@ button:active {
 }
 
 .chip {
-  background: rgba(215, 181, 109, 0.14);
+  background: rgba(200, 209, 219, 0.14);
   color: var(--accent);
   padding: 6px 10px;
   border-radius: 999px;
   font-size: 12px;
-  border: 1px solid rgba(215, 181, 109, 0.3);
+  border: 1px solid rgba(200, 209, 219, 0.3);
 }
 
 .section {
@@ -289,7 +289,7 @@ button:active {
   background: var(--panel);
   border-radius: 22px;
   padding: 20px;
-  border: 1px solid rgba(215, 181, 109, 0.12);
+  border: 1px solid rgba(200, 209, 219, 0.12);
 }
 
 .course-title {
@@ -362,9 +362,9 @@ button:active {
 }
 
 .bar {
-  background: linear-gradient(180deg, rgba(215, 181, 109, 0.85), rgba(215, 181, 109, 0.2));
+  background: linear-gradient(180deg, rgba(200, 209, 219, 0.85), rgba(200, 209, 219, 0.2));
   border-radius: 10px 10px 6px 6px;
-  border: 1px solid rgba(215, 181, 109, 0.35);
+  border: 1px solid rgba(200, 209, 219, 0.35);
   min-height: 18px;
 }
 
@@ -416,8 +416,8 @@ button:active {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(120deg, rgba(255, 255, 255, 0.06), transparent 40%),
-    repeating-linear-gradient(125deg, rgba(255, 255, 255, 0.05) 0 2px, transparent 2px 8px);
+  background: linear-gradient(120deg, rgba(255, 255, 255, 0.05), transparent 40%),
+    repeating-linear-gradient(125deg, rgba(255, 255, 255, 0.04) 0 2px, transparent 2px 8px);
   opacity: 0.35;
   pointer-events: none;
 }
@@ -499,7 +499,7 @@ select,
   background: var(--panel);
   border-radius: 26px;
   padding: 24px;
-  border: 1px solid rgba(215, 181, 109, 0.1);
+  border: 1px solid rgba(200, 209, 219, 0.1);
 }
 
 .practice-tools {
