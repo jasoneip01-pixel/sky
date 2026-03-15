@@ -364,8 +364,8 @@ const speakSpellThenWord = (word) => {
 
 const init = async () => {
   const [courses, wordlists] = await Promise.all([
-    loadJSON('/german-vocab/data/courses.json'),
-    loadJSON('/german-vocab/data/wordlists.json'),
+    loadJSON('./data/courses.json'),
+    loadJSON('./data/wordlists.json'),
   ]);
 
   state.courses = courses.courses;
