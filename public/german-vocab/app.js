@@ -79,6 +79,7 @@ const elements = {
   focusMinutes: document.getElementById('focusMinutes'),
   tasksToday: document.getElementById('tasksToday'),
   pressureScore: document.getElementById('pressureScore'),
+  completionBanner: document.getElementById('completionBanner'),
 };
 
 const PROGRESS_KEY = 'wortsprint-progress-v2';
@@ -787,6 +788,11 @@ const renderPlan = () => {
   elements.streakCount.textContent = state.plan.streak || 0;
   renderProgressRing();
   renderStatusStrip();
+  if (elements.completionBanner) {
+    const done = state.plan.done || 0;
+    const target = state.plan.dailyTarget || 30;
+    elements.completionBanner.classList.toggle('show', done >= target);
+  }
 };
 
 const renderProgressRing = () => {

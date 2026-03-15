@@ -320,6 +320,64 @@ button:active {
   gap: 14px;
 }
 
+.goal-grid {
+  margin-top: 14px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+}
+
+.goal-card {
+  background: var(--panel);
+  border-radius: 18px;
+  padding: 16px;
+  border: 1px solid rgba(200, 209, 219, 0.1);
+  display: grid;
+  gap: 10px;
+}
+
+.goal-title {
+  font-family: 'Cormorant Garamond', 'Noto Serif SC', serif;
+  font-weight: 600;
+  letter-spacing: 0.6px;
+}
+
+.goal-meta {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.goal-list {
+  display: grid;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.completion-banner {
+  margin-top: 14px;
+  padding: 14px 18px;
+  border-radius: 16px;
+  border: 1px solid rgba(200, 209, 219, 0.18);
+  background: rgba(200, 209, 219, 0.08);
+  display: none;
+  gap: 6px;
+}
+
+.completion-banner.show {
+  display: grid;
+}
+
+.completion-title {
+  font-weight: 600;
+  letter-spacing: 0.4px;
+}
+
+.completion-sub {
+  color: var(--muted);
+  font-size: 12px;
+}
+
 .course-card {
   background: var(--panel);
   border-radius: 18px;
