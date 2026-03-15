@@ -721,7 +721,9 @@ const renderFlashcard = () => {
   const entry = getNextEntry();
   if (!entry) {
     elements.cardFront.textContent = '暂无词条';
-    elements.cardBack.textContent = '请导入词表或选择其他课程';
+    elements.cardBack.textContent = state.currentListId === 'B2'
+      ? 'B2 当前未内置词表，请导入自定义词表'
+      : '请导入词表或选择其他课程';
     elements.synonymTags.innerHTML = '';
     if (elements.dictationResult) {
       elements.dictationResult.textContent = '等待输入';
@@ -789,6 +791,8 @@ const renderPlan = () => {
   elements.streakCount.textContent = state.plan.streak || 0;
   renderProgressRing();
   renderStatusStrip();
+  renderMockChart();
+  renderMockDueList();
   if (elements.completionBanner) {
     const done = state.plan.done || 0;
     const target = state.plan.dailyTarget || 30;
@@ -878,6 +882,7 @@ const renderMockDueList = () => {
   due.forEach((item) => {
     const row = document.createElement('div');
     row.className = 'due-item';
+    row.dataset.entryId = item.id;
     row.innerHTML = `<strong>${item.word}</strong><span>建议今日复习</span>`;
     elements.dueList.appendChild(row);
   });
@@ -1064,6 +1069,26 @@ if (elements.startDaily) {
 if (elements.viewWrongList) {
   elements.viewWrongList.addEventListener('click', () => {
     elements.wrongList?.scrollIntoView({ behavior: 'smooth' });
+  });
+}
+
+if (elements.dueList) {
+  elements.dueList.addEventListener('click', (event) => {
+    const target = event.target.closest('.due-item');
+    if (!target) return;
+    const entryId = target.dataset.entryId;
+    if (!entryId) return;
+    const entry = state.entries.find((item) => item.id === entryId);
+    if (!entry) return;
+    elements.flashcard.dataset.entryId = entry.id;
+    elements.flashcard.classList.remove('flipped');
+    elements.cardFront.textContent = state.practice.dictation ? '听写模式：点击朗读按钮' : entry.word;
+    const example = state.practice.maskExamples
+      ? maskExample(entry.example || entry.raw || '', entry.word)
+      : entry.example || entry.raw || '暂无例句';
+    elements.cardBack.textContent = example;
+    renderSynonymTags(entry);
+    elements.flashcard.scrollIntoView({ behavior: 'smooth' });
   });
 }
 
