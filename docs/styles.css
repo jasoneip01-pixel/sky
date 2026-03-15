@@ -852,3 +852,54 @@ select,
     width: 100%;
   }
 }
+
+@media (max-width: 430px) {
+  .topbar {
+    gap: 12px;
+  }
+
+  .status-strip {
+    width: 100%;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .top-progress {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .progress-ring {
+    width: 92px;
+    height: 92px;
+  }
+
+  .hero {
+    gap: 18px;
+  }
+
+  .section {
+    margin-top: 32px;
+  }
+
+  .course-grid,
+  .goal-grid,
+  .data-grid,
+  .plan-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 375px) {
+  .brand .logo {
+    font-size: 22px;
+  }
+
+  .hero-copy h1 {
+    font-size: 26px;
+  }
+
+  .progress-meta {
+    min-width: auto;
+  }
+}
