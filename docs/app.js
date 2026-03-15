@@ -71,6 +71,11 @@ const elements = {
   rateValue: document.getElementById('rateValue'),
   reviewChart: document.getElementById('reviewChart'),
   dueList: document.getElementById('dueList'),
+  progressRing: document.getElementById('progressRing'),
+  progressValue: document.getElementById('progressValue'),
+  progressDone: document.getElementById('progressDone'),
+  progressTarget: document.getElementById('progressTarget'),
+  progressStreak: document.getElementById('progressStreak'),
 };
 
 const PROGRESS_KEY = 'wortsprint-progress-v2';
@@ -777,6 +782,20 @@ const renderPlan = () => {
   elements.todayLeft.textContent = Math.max((state.plan.dailyTarget || 30) - state.plan.done, 0);
   elements.dueToday.textContent = getDueEntries().length;
   elements.streakCount.textContent = state.plan.streak || 0;
+  renderProgressRing();
+};
+
+const renderProgressRing = () => {
+  if (!elements.progressRing) return;
+  const target = state.plan.dailyTarget || 30;
+  const done = state.plan.done || 0;
+  const percent = Math.min(Math.round((done / Math.max(target, 1)) * 100), 100);
+  const degree = Math.round((percent / 100) * 360);
+  elements.progressRing.style.background = `conic-gradient(var(--accent) ${degree}deg, rgba(255, 255, 255, 0.08) ${degree}deg)`;
+  elements.progressValue.textContent = `${percent}%`;
+  elements.progressDone.textContent = done;
+  elements.progressTarget.textContent = target;
+  elements.progressStreak.textContent = state.plan.streak || 0;
 };
 
 const renderPractice = () => {

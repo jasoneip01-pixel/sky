@@ -4,6 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>德语背词 · 大学基础德语 1-4</title>
+    <meta name="theme-color" content="#0a0b0c" />
+    <link rel="manifest" href="/german-vocab/manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="/german-vocab/assets/apple-touch-icon.png" />
+    <link rel="apple-touch-startup-image" href="/german-vocab/assets/apple-startup.png" />
     <link rel="stylesheet" href="/german-vocab/styles.css" />
   </head>
   <body>
@@ -13,6 +17,28 @@
         <div class="brand">
           <div class="logo">WortSprint</div>
           <div class="tagline">大学基础德语 1-4 年级 · A1–B2</div>
+        </div>
+        <div class="top-progress">
+          <div class="progress-ring" id="progressRing">
+            <div class="progress-core">
+              <div class="progress-value" id="progressValue">--%</div>
+              <div class="progress-label">今日进度</div>
+            </div>
+          </div>
+          <div class="progress-meta">
+            <div class="meta-item">
+              <span>已完成</span>
+              <strong id="progressDone">--</strong>
+            </div>
+            <div class="meta-item">
+              <span>目标</span>
+              <strong id="progressTarget">--</strong>
+            </div>
+            <div class="meta-item">
+              <span>连续天数</span>
+              <strong id="progressStreak">--</strong>
+            </div>
+          </div>
         </div>
         <div class="cta">
           <button class="ghost" id="resetProgress" type="button">清空进度</button>
