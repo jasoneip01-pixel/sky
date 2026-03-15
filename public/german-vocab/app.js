@@ -80,6 +80,7 @@ const elements = {
   tasksToday: document.getElementById('tasksToday'),
   pressureScore: document.getElementById('pressureScore'),
   completionBanner: document.getElementById('completionBanner'),
+  goalCards: document.querySelectorAll('.goal-card'),
 };
 
 const PROGRESS_KEY = 'wortsprint-progress-v2';
@@ -814,7 +815,7 @@ const renderStatusStrip = () => {
   const target = state.plan.dailyTarget || 30;
   const focus = Math.min(120, 20 + done * 2);
   const tasks = Math.min(target, Math.max(6, Math.round(target * 0.6)));
-  const pressure = Math.min(10, Math.max(3, Math.round(getDueEntries().length / 3)));
+  const pressure = Math.min(10, Math.max(1, Math.round(getDueEntries().length / 3)));
   elements.focusMinutes.textContent = `${focus}m`;
   elements.tasksToday.textContent = tasks;
   elements.pressureScore.textContent = `${pressure}/10`;
@@ -829,15 +830,31 @@ const renderPractice = () => {
   elements.rateValue.textContent = `${Number(state.practice.rate || 1).toFixed(2)}x`;
 };
 
+const dateDiff = (startKey, endKey) => {
+  const [sy, sm, sd] = startKey.split('-').map(Number);
+  const [ey, em, ed] = endKey.split('-').map(Number);
+  const s = new Date(sy, sm - 1, sd);
+  const e = new Date(ey, em - 1, ed);
+  return Math.round((e - s) / 86400000);
+};
+
 const renderMockChart = () => {
   if (!elements.reviewChart) return;
-  const mock = [6, 10, 14, 18, 12, 9, 7];
+  const today = getTodayKey();
+  const dueEntries = state.entries.filter((entry) => getProgress(entry.id).due >= today);
+  const buckets = Array.from({ length: 7 }, () => 0);
+  dueEntries.forEach((entry) => {
+    const due = getProgress(entry.id).due;
+    const diff = Math.max(0, Math.min(6, dateDiff(today, due)));
+    buckets[diff] += 1;
+  });
+  const maxValue = Math.max(...buckets, 1);
   elements.reviewChart.innerHTML = '';
-  mock.forEach((value, index) => {
+  buckets.forEach((value, index) => {
     const wrap = document.createElement('div');
     const bar = document.createElement('div');
     bar.className = 'bar';
-    bar.style.height = `${value * 6}px`;
+    bar.style.height = `${Math.max(18, Math.round((value / maxValue) * 120))}px`;
     const label = document.createElement('div');
     label.className = 'bar-label';
     label.textContent = `D${index + 1}`;
@@ -849,18 +866,19 @@ const renderMockChart = () => {
 
 const renderMockDueList = () => {
   if (!elements.dueList) return;
-  const samples = [
-    { word: 'der Alltag', count: 6 },
-    { word: 'sich erinnern', count: 4 },
-    { word: 'das Studium', count: 5 },
-    { word: 'die Gelegenheit', count: 3 },
-    { word: 'verbinden', count: 4 },
-  ];
+  const today = getTodayKey();
+  const due = state.entries
+    .filter((entry) => getProgress(entry.id).due <= today)
+    .slice(0, 6);
   elements.dueList.innerHTML = '';
-  samples.forEach((item) => {
+  if (due.length === 0) {
+    elements.dueList.innerHTML = '<div class="due-item"><strong>暂无到期词</strong><span>保持节奏</span></div>';
+    return;
+  }
+  due.forEach((item) => {
     const row = document.createElement('div');
     row.className = 'due-item';
-    row.innerHTML = `<strong>${item.word}</strong><span>预计复习 ${item.count} 次</span>`;
+    row.innerHTML = `<strong>${item.word}</strong><span>建议今日复习</span>`;
     elements.dueList.appendChild(row);
   });
 };
@@ -1046,6 +1064,25 @@ if (elements.startDaily) {
 if (elements.viewWrongList) {
   elements.viewWrongList.addEventListener('click', () => {
     elements.wrongList?.scrollIntoView({ behavior: 'smooth' });
+  });
+}
+
+if (elements.goalCards && elements.goalCards.length > 0) {
+  elements.goalCards.forEach((card) => {
+    card.addEventListener('click', () => {
+      const level = card.dataset.level;
+      if (!level) return;
+      state.currentListId = level;
+      elements.courseSelect.value = level;
+      updateEntries();
+      updateStats();
+      renderWordList();
+      renderWrongList();
+      prepareQueue();
+      renderFlashcard();
+      renderPlan();
+      document.getElementById('flashcard')?.scrollIntoView({ behavior: 'smooth' });
+    });
   });
 }
 

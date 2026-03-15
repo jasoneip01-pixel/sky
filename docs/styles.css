@@ -334,6 +334,14 @@ button:active {
   border: 1px solid rgba(200, 209, 219, 0.1);
   display: grid;
   gap: 10px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border 0.2s ease;
+}
+
+.goal-card:hover {
+  transform: translateY(-2px);
+  border: 1px solid rgba(200, 209, 219, 0.25);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.35);
 }
 
 .goal-title {
