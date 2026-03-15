@@ -796,7 +796,7 @@ const renderPlan = () => {
   if (elements.completionBanner) {
     const done = state.plan.done || 0;
     const target = state.plan.dailyTarget || 30;
-    elements.completionBanner.classList.toggle('show', done >= target);
+    elements.completionBanner.open = done >= target;
   }
 };
 

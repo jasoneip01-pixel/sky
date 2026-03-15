@@ -90,7 +90,9 @@
           <span>来自官方公开资料</span>
         </div>
         <div class="course-grid" id="courseGrid"></div>
-        <div class="goal-grid">
+        <details class="collapse" open>
+          <summary>课程目标与推荐时长</summary>
+          <div class="goal-grid">
           <div class="goal-card" data-level="A1">
             <div class="goal-title">A1 课程目标</div>
             <div class="goal-meta">推荐时长：6-8 周</div>
@@ -128,6 +130,7 @@
             </div>
           </div>
         </div>
+        </details>
       </section>
 
       <section class="section">
@@ -135,10 +138,10 @@
           <h2>学习计划与复习曲线</h2>
           <span>基于间隔重复，自动安排今日需要复习的词</span>
         </div>
-        <div class="completion-banner" id="completionBanner">
-          <div class="completion-title">今日计划已完成</div>
+        <details class="collapse" id="completionBanner">
+          <summary>今日计划已完成</summary>
           <div class="completion-sub">你可以继续巩固或明天再来，已完成的词会进入复习计划。</div>
-        </div>
+        </details>
         <div class="plan-grid">
           <div class="plan-card">
             <div class="plan-title">每日目标</div>
@@ -264,7 +267,10 @@
             <input class="search" id="searchInput" placeholder="搜索德语单词或例句" />
           </div>
         </div>
-        <div class="wordlist" id="wordList"></div>
+        <details class="collapse" open>
+          <summary>展开词表浏览</summary>
+          <div class="wordlist" id="wordList"></div>
+        </details>
       </section>
 
       <section class="section">
@@ -272,7 +278,10 @@
           <h2>错词本</h2>
           <span>自动记录最近标记为“还不熟”的词</span>
         </div>
-        <div class="wordlist" id="wrongList"></div>
+        <details class="collapse">
+          <summary>展开错词本</summary>
+          <div class="wordlist" id="wrongList"></div>
+        </details>
       </section>
 
       <section class="section">
@@ -280,11 +289,14 @@
           <h2>导入自定义词表（B2 或课程扩展）</h2>
           <span>支持 CSV / TSV，首列为单词，第二列为例句或释义</span>
         </div>
-        <div class="import-box">
-          <input id="importFile" type="file" accept=".csv,.tsv,.txt" />
-          <button class="ghost" id="downloadTemplate" type="button">下载模板</button>
-          <div class="import-status" id="importStatus">尚未导入</div>
-        </div>
+        <details class="collapse">
+          <summary>展开导入工具</summary>
+          <div class="import-box">
+            <input id="importFile" type="file" accept=".csv,.tsv,.txt" />
+            <button class="ghost" id="downloadTemplate" type="button">下载模板</button>
+            <div class="import-status" id="importStatus">尚未导入</div>
+          </div>
+        </details>
       </section>
 
       <footer class="footer">

@@ -327,6 +327,46 @@ button:active {
   gap: 14px;
 }
 
+.collapse {
+  margin-top: 10px;
+  border-radius: 14px;
+  border: 1px solid rgba(200, 209, 219, 0.12);
+  padding: 6px 10px;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.collapse summary {
+  cursor: pointer;
+  list-style: none;
+  font-size: 12px;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.collapse summary::-webkit-details-marker {
+  display: none;
+}
+
+.collapse summary::after {
+  content: '展开';
+  color: var(--text);
+  font-size: 12px;
+}
+
+.collapse[open] summary::after {
+  content: '收起';
+}
+
+.collapse > .goal-grid,
+.collapse > .wordlist,
+.collapse > .import-box,
+.collapse > .completion-sub {
+  margin-top: 10px;
+}
+
 .goal-card {
   background: var(--panel);
   border-radius: 18px;
