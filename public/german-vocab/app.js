@@ -9,7 +9,7 @@ const state = {
   custom: [],
   queue: [],
   page: 1,
-  pageSize: 40,
+  pageSize: 20,
   plan: {
     dailyTarget: 30,
     date: null,
