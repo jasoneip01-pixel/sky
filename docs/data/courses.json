@@ -1,0 +1,66 @@
+{
+  "meta": {
+    "title": "大学基础德语 1-4 年级课程（基于公开官方资料）",
+    "generated_at": "2026-03-15",
+    "note": "词表来源于 Goethe-Institut 官方公开词表；B2 在应用内提供官方模考试题，可自行导入词表。"
+  },
+  "courses": [
+    {
+      "id": "year1",
+      "title": "大学基础德语 1（Year 1）",
+      "level": "A1",
+      "focus": "入门词汇与基础日常交流",
+      "resources": [
+        {
+          "title": "Goethe-Zertifikat A1 / Start Deutsch 1 Wortliste",
+          "type": "wordlist",
+          "publisher": "Goethe-Institut",
+          "url": "https://www.goethe.de/pro/relaunch/prf/de/A1_SD1_Wortliste_02.pdf"
+        }
+      ]
+    },
+    {
+      "id": "year2",
+      "title": "大学基础德语 2（Year 2）",
+      "level": "A2",
+      "focus": "基础语法与生活场景扩展",
+      "resources": [
+        {
+          "title": "Goethe-Zertifikat A2 Wortliste",
+          "type": "wordlist",
+          "publisher": "Goethe-Institut",
+          "url": "https://www.goethe.de/pro/relaunch/prf/de/Goethe-Zertifikat_A2_Wortliste.pdf"
+        }
+      ]
+    },
+    {
+      "id": "year3",
+      "title": "大学基础德语 3（Year 3）",
+      "level": "B1",
+      "focus": "进阶词汇与自主表达",
+      "resources": [
+        {
+          "title": "Goethe-Zertifikat B1 Wortliste",
+          "type": "wordlist",
+          "publisher": "Goethe-Institut",
+          "url": "https://www.goethe.de/pro/relaunch/prf/de/Goethe-Zertifikat_B1_Wortliste.pdf"
+        }
+      ]
+    },
+    {
+      "id": "year4",
+      "title": "大学基础德语 4（Year 4）",
+      "level": "B2",
+      "focus": "学术与职业语境能力",
+      "resources": [
+        {
+          "title": "Goethe-Zertifikat B2 Modellsatz (Erwachsene)",
+          "type": "model_test",
+          "publisher": "Goethe-Institut",
+          "url": "https://www.goethe.de/pro/relaunch/prf/materialien/B2/b2_modellsatz_erwachsene.pdf",
+          "note": "应用内暂未内置 B2 词表，可结合课堂教材或自行导入词表。"
+        }
+      ]
+    }
+  ]
+}

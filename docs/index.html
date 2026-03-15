@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>德语背词 · 大学基础德语 1-4</title>
+    <link rel="stylesheet" href="/german-vocab/styles.css" />
+  </head>
+  <body>
+    <div class="aurora"></div>
+    <div class="app">
+      <header class="topbar">
+        <div class="brand">
+          <div class="logo">WortSprint</div>
+          <div class="tagline">大学基础德语 1-4 年级 · A1–B2</div>
+        </div>
+        <div class="cta">
+          <button class="ghost" id="resetProgress" type="button">清空进度</button>
+          <button class="primary" id="startPractice" type="button">开始今日练习</button>
+        </div>
+      </header>
+
+      <section class="hero">
+        <div class="hero-copy">
+          <h1>把德语词汇拆成可完成的每日冲刺</h1>
+          <p>
+            课程词表来自 Goethe-Institut 官方公开资料，覆盖 A1/A2/B1；B2 目前在应用内提供官方模考试题，
+            你可以随时导入自己的 B2 词表。
+          </p>
+          <div class="hero-metrics" id="heroMetrics"></div>
+        </div>
+        <div class="hero-card">
+          <div class="hero-card-title">今日练习</div>
+          <div class="hero-card-body">
+            <div class="metric">
+              <span class="metric-label">待复习</span>
+              <span class="metric-value" id="dueCount">--</span>
+            </div>
+            <div class="metric">
+              <span class="metric-label">已掌握</span>
+              <span class="metric-value" id="knownCount">--</span>
+            </div>
+            <div class="metric">
+              <span class="metric-label">总词汇</span>
+              <span class="metric-value" id="totalCount">--</span>
+            </div>
+          </div>
+          <div class="hero-card-footer">
+            <span class="chip">自适应 iPhone / Huawei / 平板</span>
+            <span class="chip">离线可用</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-header">
+          <h2>课程与教材清单</h2>
+          <span>来自官方公开资料</span>
+        </div>
+        <div class="course-grid" id="courseGrid"></div>
+      </section>
+
+      <section class="section">
+        <div class="section-header">
+          <h2>学习计划与复习曲线</h2>
+          <span>基于间隔重复，自动安排今日需要复习的词</span>
+        </div>
+        <div class="plan-grid">
+          <div class="plan-card">
+            <div class="plan-title">每日目标</div>
+            <div class="plan-body">
+              <input class="plan-input" id="dailyTarget" type="number" min="5" max="200" value="30" />
+              <button class="ghost" id="savePlan" type="button">保存目标</button>
+            </div>
+            <div class="plan-note">建议 20-40 个/天，自动混入复习词。</div>
+          </div>
+          <div class="plan-card">
+            <div class="plan-title">今日进度</div>
+            <div class="plan-body">
+              <div class="plan-metric">
+                <span>今日已完成</span>
+                <strong id="todayDone">--</strong>
+              </div>
+              <div class="plan-metric">
+                <span>今日待完成</span>
+                <strong id="todayLeft">--</strong>
+              </div>
+              <button class="primary" id="startDaily" type="button">开始今日计划</button>
+            </div>
+          </div>
+          <div class="plan-card">
+            <div class="plan-title">复习统计</div>
+            <div class="plan-body">
+              <div class="plan-metric">
+                <span>今日到期复习</span>
+                <strong id="dueToday">--</strong>
+              </div>
+              <div class="plan-metric">
+                <span>连续学习天数</span>
+                <strong id="streakCount">--</strong>
+              </div>
+              <button class="ghost" id="viewWrongList" type="button">查看错词本</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-header">
+          <h2>快速背词</h2>
+          <div class="controls">
+            <label class="select">
+              <span>选择课程</span>
+              <select id="courseSelect"></select>
+            </label>
+            <label class="select">
+              <span>筛选</span>
+              <select id="filterSelect">
+                <option value="all">全部</option>
+                <option value="new">未掌握</option>
+                <option value="known">已掌握</option>
+              </select>
+            </label>
+          </div>
+        </div>
+        <div class="card-shell">
+          <div class="flashcard" id="flashcard">
+            <div class="flashcard-face front" id="cardFront">加载中...</div>
+            <div class="flashcard-face back" id="cardBack"></div>
+          </div>
+          <div class="synonym-tags" id="synonymTags"></div>
+          <div class="practice-tools">
+            <label class="toggle">
+              <input id="toggleDictation" type="checkbox" />
+              听写模式
+            </label>
+            <label class="toggle">
+              <input id="toggleMask" type="checkbox" />
+              例句遮盖
+            </label>
+            <label class="toggle">
+              <input id="toggleAutoSpeak" type="checkbox" />
+              自动朗读
+            </label>
+            <div class="tts-settings">
+              <label class="select">
+                <span>语音</span>
+                <select id="voiceSelect"></select>
+              </label>
+              <label class="select">
+                <span>语速</span>
+                <input id="rateInput" class="rate-input" type="range" min="0.7" max="1.3" step="0.05" value="1" />
+              </label>
+              <span class="rate-value" id="rateValue">1.0x</span>
+            </div>
+            <div class="dictation-box" id="dictationBox">
+              <input class="dictation-input" id="dictationInput" placeholder="输入你听到的单词" />
+              <button class="ghost" id="checkDictation" type="button">检查</button>
+              <span class="dictation-result" id="dictationResult">等待输入</span>
+            </div>
+            <div class="tts-box">
+              <button class="pill" id="speakWord" type="button">朗读单词</button>
+              <button class="pill" id="speakExample" type="button">朗读例句</button>
+              <button class="pill" id="spellThenSpeak" type="button">拼读+整词</button>
+            </div>
+          </div>
+          <div class="flashcard-actions">
+            <button class="pill" id="markKnown" type="button">认识</button>
+            <button class="pill" id="markLearning" type="button">还不熟</button>
+            <button class="pill" id="nextCard" type="button">下一个</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-header">
+          <h2>词表浏览</h2>
+          <div class="controls">
+            <input class="search" id="searchInput" placeholder="搜索德语单词或例句" />
+          </div>
+        </div>
+        <div class="wordlist" id="wordList"></div>
+      </section>
+
+      <section class="section">
+        <div class="section-header">
+          <h2>错词本</h2>
+          <span>自动记录最近标记为“还不熟”的词</span>
+        </div>
+        <div class="wordlist" id="wrongList"></div>
+      </section>
+
+      <section class="section">
+        <div class="section-header">
+          <h2>导入自定义词表（B2 或课程扩展）</h2>
+          <span>支持 CSV / TSV，首列为单词，第二列为例句或释义</span>
+        </div>
+        <div class="import-box">
+          <input id="importFile" type="file" accept=".csv,.tsv,.txt" />
+          <button class="ghost" id="downloadTemplate" type="button">下载模板</button>
+          <div class="import-status" id="importStatus">尚未导入</div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <div>数据来源：Goethe-Institut 官方公开词表与模考试题。</div>
+        <div class="muted">词表解析为自动抽取，可能需要人工微调。</div>
+      </footer>
+    </div>
+
+    <script src="/german-vocab/app.js" type="module"></script>
+  </body>
+</html>
