@@ -281,6 +281,19 @@
             <button class="pill" id="prevPage" type="button">上一页</button>
             <span class="page-info" id="pageInfo">1 / 1</span>
             <button class="pill" id="nextPage" type="button">下一页</button>
+            <label class="page-jump">
+              跳页
+              <input id="pageInput" type="number" min="1" value="1" />
+            </label>
+            <label class="page-size">
+              每页
+              <select id="pageSizeSelect">
+                <option value="10">10</option>
+                <option value="20" selected>20</option>
+                <option value="30">30</option>
+                <option value="40">40</option>
+              </select>
+            </label>
           </div>
           <div class="wordlist" id="wordList"></div>
         </details>

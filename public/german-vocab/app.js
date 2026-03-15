@@ -92,6 +92,8 @@ const elements = {
   prevPage: document.getElementById('prevPage'),
   nextPage: document.getElementById('nextPage'),
   pageInfo: document.getElementById('pageInfo'),
+  pageInput: document.getElementById('pageInput'),
+  pageSizeSelect: document.getElementById('pageSizeSelect'),
 };
 
 const PROGRESS_KEY = 'wortsprint-progress-v2';
@@ -618,6 +620,10 @@ const renderPagination = (total) => {
   if (!elements.pageInfo) return;
   const totalPages = getPageCount(total);
   elements.pageInfo.textContent = `${state.page} / ${totalPages}`;
+  if (elements.pageInput) {
+    elements.pageInput.value = state.page;
+    elements.pageInput.max = totalPages;
+  }
   if (elements.prevPage) {
     elements.prevPage.disabled = state.page <= 1;
   }
@@ -1113,6 +1119,23 @@ if (elements.prevPage) {
 if (elements.nextPage) {
   elements.nextPage.addEventListener('click', () => {
     state.page += 1;
+    renderWordList();
+  });
+}
+
+if (elements.pageInput) {
+  elements.pageInput.addEventListener('change', (event) => {
+    const totalPages = getPageCount(applyFilters().length);
+    const value = Number(event.target.value) || 1;
+    state.page = Math.min(Math.max(value, 1), totalPages);
+    renderWordList();
+  });
+}
+
+if (elements.pageSizeSelect) {
+  elements.pageSizeSelect.addEventListener('change', (event) => {
+    state.pageSize = Number(event.target.value) || 20;
+    state.page = 1;
     renderWordList();
   });
 }
