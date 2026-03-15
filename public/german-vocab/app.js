@@ -81,6 +81,12 @@ const elements = {
   pressureScore: document.getElementById('pressureScore'),
   completionBanner: document.getElementById('completionBanner'),
   goalCards: document.querySelectorAll('.goal-card'),
+  tabChart: document.getElementById('tabChart'),
+  tabDue: document.getElementById('tabDue'),
+  panelChart: document.getElementById('panelChart'),
+  panelDue: document.getElementById('panelDue'),
+  floatingBar: document.getElementById('floatingBar'),
+  floatingPanel: document.getElementById('floatingPanel'),
 };
 
 const PROGRESS_KEY = 'wortsprint-progress-v2';
@@ -476,7 +482,8 @@ const renderCourses = () => {
       <div class="course-title">${course.title}</div>
       <div class="course-meta">级别：${course.level} · ${course.focus}</div>
       <div class="course-meta">词表数量：${count > 0 ? count : '待导入'}</div>
-      <div class="resource-list">
+      <details class="resource-list collapse">
+        <summary>资源详情</summary>
         ${course.resources
           .map(
             (res) => `
@@ -489,7 +496,7 @@ const renderCourses = () => {
             `
           )
           .join('')}
-      </div>
+      </details>
     `;
     elements.courseGrid.appendChild(card);
   });
@@ -1070,6 +1077,24 @@ if (elements.viewWrongList) {
   elements.viewWrongList.addEventListener('click', () => {
     elements.wrongList?.scrollIntoView({ behavior: 'smooth' });
   });
+}
+
+if (elements.tabChart && elements.tabDue) {
+  const activateTab = (tab) => {
+    if (tab === 'chart') {
+      elements.tabChart.classList.add('active');
+      elements.tabDue.classList.remove('active');
+      elements.panelChart.classList.add('active');
+      elements.panelDue.classList.remove('active');
+    } else {
+      elements.tabDue.classList.add('active');
+      elements.tabChart.classList.remove('active');
+      elements.panelDue.classList.add('active');
+      elements.panelChart.classList.remove('active');
+    }
+  };
+  elements.tabChart.addEventListener('click', () => activateTab('chart'));
+  elements.tabDue.addEventListener('click', () => activateTab('due'));
 }
 
 if (elements.dueList) {

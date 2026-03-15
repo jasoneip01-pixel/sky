@@ -458,6 +458,15 @@ button:active {
   font-size: 12px;
 }
 
+.resource-list.collapse {
+  padding: 6px 10px;
+}
+
+.resource-list.collapse summary {
+  font-size: 12px;
+  color: var(--muted);
+}
+
 .resource a {
   color: var(--accent);
   text-decoration: none;
@@ -492,6 +501,35 @@ button:active {
   gap: 12px;
   position: relative;
   overflow: hidden;
+}
+
+.toggle-tabs {
+  display: flex;
+  gap: 8px;
+}
+
+.tab-button {
+  border: 1px solid rgba(200, 209, 219, 0.14);
+  background: transparent;
+  color: var(--muted);
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+}
+
+.tab-button.active {
+  color: var(--text);
+  border-color: rgba(200, 209, 219, 0.3);
+  background: rgba(200, 209, 219, 0.08);
+}
+
+.tab-panel {
+  display: none;
+}
+
+.tab-panel.active {
+  display: grid;
+  gap: 8px;
 }
 
 .chart {
@@ -642,6 +680,45 @@ select,
   border-radius: 22px;
   padding: 20px;
   border: 1px solid rgba(200, 209, 219, 0.1);
+}
+
+.floating-bar {
+  position: sticky;
+  bottom: 12px;
+  margin-top: 20px;
+  background: rgba(16, 18, 24, 0.92);
+  border: 1px solid rgba(200, 209, 219, 0.18);
+  border-radius: 16px;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 4;
+  backdrop-filter: blur(10px);
+}
+
+.floating-tools,
+.floating-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.floating-panel {
+  margin-top: 12px;
+  padding: 12px;
+  border-radius: 16px;
+  background: rgba(16, 18, 24, 0.92);
+  border: 1px solid rgba(200, 209, 219, 0.12);
+  display: grid;
+  gap: 10px;
+}
+
+.panel-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
 }
 
 .practice-tools {
@@ -927,6 +1004,10 @@ select,
   .data-grid,
   .plan-grid {
     grid-template-columns: 1fr;
+  }
+
+  .floating-bar {
+    bottom: 8px;
   }
 }
 
