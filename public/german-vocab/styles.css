@@ -1,16 +1,17 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Noto+Serif+SC:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700&family=Noto+Serif+SC:wght@400;600&display=swap');
 
 :root {
   color-scheme: dark;
   --bg: #0a0b0c;
-  --panel: rgba(18, 19, 22, 0.92);
-  --panel-strong: rgba(24, 25, 28, 0.96);
+  --bg-2: #101216;
+  --panel: rgba(16, 18, 22, 0.88);
+  --panel-strong: rgba(20, 22, 27, 0.95);
   --accent: #d7b56d;
-  --accent-2: #9aa2a8;
+  --accent-strong: #f1e0b3;
   --text: #f4f0e6;
-  --muted: #9c9385;
+  --muted: #a49b8c;
   --stroke: rgba(255, 255, 255, 0.08);
-  --shadow: 0 18px 50px rgba(0, 0, 0, 0.45);
+  --shadow: 0 22px 70px rgba(0, 0, 0, 0.55);
 }
 
 * {
@@ -19,8 +20,9 @@
 
 body {
   margin: 0;
-  font-family: 'Space Grotesk', 'Noto Serif SC', sans-serif;
-  background: var(--bg);
+  font-family: 'Manrope', 'Noto Serif SC', sans-serif;
+  background: radial-gradient(circle at top, rgba(215, 181, 109, 0.1), transparent 45%),
+    linear-gradient(180deg, var(--bg), var(--bg-2));
   color: var(--text);
   min-height: 100vh;
 }
@@ -28,9 +30,10 @@ body {
 .aurora {
   position: fixed;
   inset: 0;
-  background: radial-gradient(circle at top left, rgba(215, 181, 109, 0.22), transparent 45%),
-    radial-gradient(circle at 20% 60%, rgba(120, 124, 132, 0.18), transparent 42%),
-    radial-gradient(circle at 70% 10%, rgba(255, 255, 255, 0.08), transparent 45%);
+  background: radial-gradient(circle at 20% 10%, rgba(215, 181, 109, 0.18), transparent 40%),
+    radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.05), transparent 45%),
+    radial-gradient(circle at 10% 80%, rgba(120, 124, 132, 0.12), transparent 35%),
+    linear-gradient(120deg, rgba(255, 255, 255, 0.02), transparent 50%);
   pointer-events: none;
   z-index: 0;
 }
@@ -38,8 +41,8 @@ body {
 .app {
   position: relative;
   z-index: 1;
-  padding: calc(env(safe-area-inset-top, 0px) + 28px) 7vw 80px;
-  max-width: 1200px;
+  padding: calc(env(safe-area-inset-top, 0px) + 32px) 7vw 96px;
+  max-width: 1240px;
   margin: 0 auto;
 }
 
@@ -119,14 +122,16 @@ body {
 }
 
 .brand .logo {
-  font-size: clamp(24px, 4vw, 34px);
-  letter-spacing: 1px;
+  font-size: clamp(26px, 4vw, 36px);
+  letter-spacing: 1.5px;
   font-weight: 700;
+  font-family: 'Cormorant Garamond', 'Noto Serif SC', serif;
 }
 
 .brand .tagline {
   color: var(--muted);
-  font-size: 14px;
+  font-size: 13px;
+  letter-spacing: 0.6px;
   margin-top: 4px;
 }
 
@@ -148,37 +153,40 @@ button:active {
 }
 
 .primary {
-  background: linear-gradient(135deg, var(--accent), #f1e0b3);
-  color: #1d1a12;
-  padding: 10px 18px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+  color: #1b160b;
+  padding: 11px 20px;
   border-radius: 999px;
   font-weight: 600;
-  box-shadow: var(--shadow);
+  box-shadow: 0 18px 45px rgba(215, 181, 109, 0.25);
 }
 
 .ghost {
   background: transparent;
   border: 1px solid var(--stroke);
   color: var(--text);
-  padding: 10px 16px;
+  padding: 10px 18px;
   border-radius: 999px;
 }
 
 .hero {
-  margin-top: 40px;
+  margin-top: 46px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 28px;
+  grid-template-columns: minmax(260px, 1.1fr) minmax(260px, 0.9fr);
+  gap: 36px;
 }
 
 .hero-copy h1 {
-  font-size: clamp(28px, 4vw, 40px);
+  font-size: clamp(30px, 4.2vw, 44px);
   margin: 0 0 12px;
+  font-family: 'Cormorant Garamond', 'Noto Serif SC', serif;
+  letter-spacing: 0.8px;
 }
 
 .hero-copy p {
   color: var(--muted);
   line-height: 1.6;
+  max-width: 520px;
 }
 
 .hero-metrics {
@@ -197,10 +205,10 @@ button:active {
 }
 
 .hero-card {
-  background: var(--panel-strong);
-  border-radius: 24px;
-  padding: 24px;
-  border: 1px solid var(--stroke);
+  background: linear-gradient(160deg, rgba(25, 27, 32, 0.98), rgba(16, 18, 22, 0.9));
+  border-radius: 26px;
+  padding: 26px;
+  border: 1px solid rgba(215, 181, 109, 0.18);
   box-shadow: var(--shadow);
 }
 
@@ -216,9 +224,9 @@ button:active {
 }
 
 .metric {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.04);
   border-radius: 14px;
-  padding: 12px 16px;
+  padding: 14px 18px;
 }
 
 .metric-label {
@@ -227,7 +235,7 @@ button:active {
 }
 
 .metric-value {
-  font-size: 22px;
+  font-size: 24px;
   font-weight: 600;
 }
 
@@ -239,7 +247,7 @@ button:active {
 }
 
 .chip {
-  background: rgba(215, 181, 109, 0.18);
+  background: rgba(215, 181, 109, 0.14);
   color: var(--accent);
   padding: 6px 10px;
   border-radius: 999px;
@@ -248,7 +256,7 @@ button:active {
 }
 
 .section {
-  margin-top: 48px;
+  margin-top: 54px;
 }
 
 .section-header {
@@ -261,7 +269,8 @@ button:active {
 
 .section-header h2 {
   margin: 0;
-  font-size: 22px;
+  font-size: 24px;
+  font-family: 'Cormorant Garamond', 'Noto Serif SC', serif;
 }
 
 .section-header span {
@@ -278,14 +287,15 @@ button:active {
 
 .course-card {
   background: var(--panel);
-  border-radius: 20px;
-  padding: 18px;
-  border: 1px solid var(--stroke);
+  border-radius: 22px;
+  padding: 20px;
+  border: 1px solid rgba(215, 181, 109, 0.12);
 }
 
 .course-title {
   font-weight: 600;
   margin-bottom: 6px;
+  font-family: 'Cormorant Garamond', 'Noto Serif SC', serif;
 }
 
 .course-meta {
@@ -487,9 +497,9 @@ select,
 .card-shell {
   margin-top: 20px;
   background: var(--panel);
-  border-radius: 24px;
-  padding: 22px;
-  border: 1px solid var(--stroke);
+  border-radius: 26px;
+  padding: 24px;
+  border: 1px solid rgba(215, 181, 109, 0.1);
 }
 
 .practice-tools {
@@ -589,7 +599,7 @@ select,
 .flashcard {
   background: rgba(255, 255, 255, 0.03);
   border-radius: 20px;
-  padding: 28px;
+  padding: 30px;
   min-height: 180px;
   display: grid;
   place-items: center;
@@ -600,8 +610,9 @@ select,
 }
 
 .flashcard-face {
-  font-size: clamp(20px, 4vw, 30px);
+  font-size: clamp(22px, 4vw, 32px);
   font-weight: 600;
+  font-family: 'Cormorant Garamond', 'Noto Serif SC', serif;
 }
 
 .flashcard-face.back {
@@ -680,9 +691,9 @@ select,
   gap: 14px;
   flex-wrap: wrap;
   background: var(--panel);
-  border-radius: 18px;
-  padding: 16px;
-  border: 1px solid var(--stroke);
+  border-radius: 20px;
+  padding: 18px;
+  border: 1px solid rgba(215, 181, 109, 0.12);
 }
 
 .import-status {
@@ -700,6 +711,12 @@ select,
 
 .muted {
   color: #7c8a84;
+}
+
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 720px) {
@@ -723,10 +740,6 @@ select,
 }
 
 @media (max-width: 480px) {
-  .hero {
-    grid-template-columns: 1fr;
-  }
-
   .flashcard-actions {
     flex-direction: column;
   }
