@@ -76,6 +76,9 @@ const elements = {
   progressDone: document.getElementById('progressDone'),
   progressTarget: document.getElementById('progressTarget'),
   progressStreak: document.getElementById('progressStreak'),
+  focusMinutes: document.getElementById('focusMinutes'),
+  tasksToday: document.getElementById('tasksToday'),
+  pressureScore: document.getElementById('pressureScore'),
 };
 
 const PROGRESS_KEY = 'wortsprint-progress-v2';
@@ -783,6 +786,7 @@ const renderPlan = () => {
   elements.dueToday.textContent = getDueEntries().length;
   elements.streakCount.textContent = state.plan.streak || 0;
   renderProgressRing();
+  renderStatusStrip();
 };
 
 const renderProgressRing = () => {
@@ -796,6 +800,18 @@ const renderProgressRing = () => {
   elements.progressDone.textContent = done;
   elements.progressTarget.textContent = target;
   elements.progressStreak.textContent = state.plan.streak || 0;
+};
+
+const renderStatusStrip = () => {
+  if (!elements.focusMinutes) return;
+  const done = state.plan.done || 0;
+  const target = state.plan.dailyTarget || 30;
+  const focus = Math.min(120, 20 + done * 2);
+  const tasks = Math.min(target, Math.max(6, Math.round(target * 0.6)));
+  const pressure = Math.min(10, Math.max(3, Math.round(getDueEntries().length / 3)));
+  elements.focusMinutes.textContent = `${focus}m`;
+  elements.tasksToday.textContent = tasks;
+  elements.pressureScore.textContent = `${pressure}/10`;
 };
 
 const renderPractice = () => {

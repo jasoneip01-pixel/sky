@@ -135,6 +135,39 @@ body {
   margin-top: 4px;
 }
 
+.status-strip {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(200, 209, 219, 0.12);
+  font-size: 12px;
+  letter-spacing: 0.4px;
+}
+
+.status-pill {
+  background: rgba(200, 209, 219, 0.12);
+  color: var(--text);
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(200, 209, 219, 0.2);
+  font-weight: 600;
+}
+
+.status-item {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  color: var(--muted);
+}
+
+.status-item strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
 .cta {
   display: flex;
   gap: 10px;
@@ -181,11 +214,12 @@ button:active {
   margin: 0 0 12px;
   font-family: 'Cormorant Garamond', 'Noto Serif SC', serif;
   letter-spacing: 0.8px;
+  line-height: 1.1;
 }
 
 .hero-copy p {
   color: var(--muted);
-  line-height: 1.6;
+  line-height: 1.5;
   max-width: 520px;
 }
 
@@ -271,6 +305,7 @@ button:active {
   margin: 0;
   font-size: 22px;
   font-family: 'Cormorant Garamond', 'Noto Serif SC', serif;
+  letter-spacing: 0.6px;
 }
 
 .section-header span {
@@ -300,7 +335,7 @@ button:active {
 
 .course-meta {
   color: var(--muted);
-  font-size: 13px;
+  font-size: 12px;
 }
 
 .resource-list {
@@ -314,7 +349,7 @@ button:active {
   border-radius: 14px;
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid var(--stroke);
-  font-size: 13px;
+  font-size: 12px;
 }
 
 .resource a {
@@ -440,6 +475,7 @@ button:active {
 
 .plan-title {
   font-weight: 600;
+  letter-spacing: 0.4px;
 }
 
 .plan-body {
@@ -461,13 +497,13 @@ button:active {
   align-items: center;
   justify-content: space-between;
   gap: 10px;
-  font-size: 14px;
+  font-size: 13px;
   color: var(--muted);
 }
 
 .plan-metric strong {
   color: var(--text);
-  font-size: 18px;
+  font-size: 16px;
 }
 
 .plan-note {
@@ -660,7 +696,7 @@ select,
 }
 
 .word-row strong {
-  font-size: 16px;
+  font-size: 15px;
 }
 
 .word-row span {
